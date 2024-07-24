@@ -17,7 +17,7 @@ class EnsureIpIsAllowed
     public function handle(Request $request, Closure $next): Response
     {
         $allowedIps = AllowedIps::select('ip')
-            ->where('enabled', 1)
+            ->where('allow', 1)
             ->get();
         $allowedIps = $allowedIps->pluck('ip')->all();
         if (in_array($request->ip(), $allowedIps)) {
