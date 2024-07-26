@@ -41,11 +41,18 @@ class EnsureAccessIsAllowed
         );
         $accessIp->save();
         
+        $logMessage = 'Someone tried to access from IP address ' . $ip;
+        $userId = null;
+        if (auth()->user() !== null) {
+            $userId = auth()->user()->id;
+            $logMessage = 'User "' . auth()->user()->name . '" accessed from IP address ' . $ip;
+        }
         $accessIpId = $accessIp->id;
         $accessLog = new AccessLogs;
+        $accessLog->user_id = $userId;
         $accessLog->access_ips_id = $accessIpId;
         $accessLog->save();
 
-        Log::channel('access_logs')->info('Access from IP address ' . $ip);
+        Log::channel('access_logs')->info($logMessage);
     }
 }

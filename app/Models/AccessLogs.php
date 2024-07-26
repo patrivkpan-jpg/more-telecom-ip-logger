@@ -17,6 +17,7 @@ class AccessLogs extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'access_ips_id',
         'logged_at'
     ];
