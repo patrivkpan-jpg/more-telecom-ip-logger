@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Logout</title>
 </head>
-<h1>
-    <h1>Welcome!</h1>
+<body>
     <form action="{{ route('logout.submit') }}" method="POST">
         @csrf
         <button id="logoutBtn" type="submit">Logout</button>

@@ -52,6 +52,11 @@ return [
 
     'channels' => [
 
+        'access_logs' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/access-logs.log')
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),
